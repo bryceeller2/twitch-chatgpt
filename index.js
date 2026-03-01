@@ -264,6 +264,12 @@ app.get('/gpt/:text', async (req, res) => {
         console.log("ERROR: GPT_MODE is not set to CHAT or PROMPT. Please set it as environment variable.")
     }
 
+    console.log('Chat received, new commit confirmed deployed');
+    const firstWord = text.split(" ")[0].toLowerCase();
+    if (firstWord == "move" || firstWord.equals("move")) {
+        res.send("move detected!")
+    }
+
     // send response
     await answer_question(answer)
 
