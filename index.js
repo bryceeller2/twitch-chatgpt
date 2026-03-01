@@ -248,20 +248,35 @@ app.get('/gpt/:text', async (req, res) => {
         }
     }
 
+    const firstWord = text.split(" ")[0].toLowerCase();
     let answer = ""
-    if (GPT_MODE === "CHAT") {
-        //CHAT MODE EXECUTION
-        answer = await openai_ops.make_openai_call(text);
-    } else if(GPT_MODE === "PROMPT") {
-        //PROMPT MODE EXECUTION
 
-        // create prompt based on file_context and the user prompt
-        let prompt = file_context;
-        prompt += "\n\nUser: " + text + "\nAgent:"
-        answer = await openai_ops.make_openai_call_completion(prompt);
-    } else {
-        //ERROR MODE EXECUTION
-        console.log("ERROR: GPT_MODE is not set to CHAT or PROMPT. Please set it as environment variable.")
+    if (COMMAND_NAME.includes(firstWord)) {
+        const prompt = text.slice(firstWord.length).trim();
+        if (GPT_MODE === "CHAT") {
+            //CHAT MODE EXECUTION
+            answer = await openai_ops.make_openai_call(prompt);
+        } else if(GPT_MODE === "PROMPT") {
+            //PROMPT MODE EXECUTION
+
+            // create prompt based on file_context and the user prompt
+            let fullPrompt = file_context;
+            fullPrompt += "\n\nUser: " + prompt + "\nAgent:"
+            answer = await openai_ops.make_openai_call_completion(fullPrompt);
+        } else {
+            //ERROR MODE EXECUTION
+            console.log("ERROR: GPT_MODE is not set to CHAT or PROMPT. Please set it as environment variable.")
+        }
+    } else if (firstWord === "!move") {
+        const direction = text.slice("!move".length).trim();
+        // TODO: handle move command
+        answer = `Move command received: ${direction}`;
+    } else if (firstWord === "!help") {
+        // TODO: handle help command
+        answer = "Commands: !move <direction>, !items, !help";
+    } else if (firstWord === "!items") {
+        // TODO: handle items command
+        answer = "You have no items.";
     }
 
     // send response
