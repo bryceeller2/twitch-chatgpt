@@ -1,7 +1,7 @@
 import { Tile } from '../../tile.js';
 
 export default new Tile(
-    "The path ends at a frozen waterfall.",
+    "A dusty reading room occupies the northeast corner of the mansion. Bookshelves line every wall, though most shelves stand bare, their contents long since removed.",
     null,
     {
         north: "The northernmost wall of the mansion blocks your path.",

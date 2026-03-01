@@ -7,7 +7,7 @@ export default new Tile(
         north: "The hallway blocks your path.",
         east: null,
         south: null,
-        west: "The westernmost edge of the mansion blocks your path",
+        west: "The westernmost wall of the mansion blocks your path",
     },
     true
 );

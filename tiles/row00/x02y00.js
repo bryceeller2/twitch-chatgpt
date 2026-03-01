@@ -1,7 +1,7 @@
 import { Tile } from '../../tile.js';
 
 export default new Tile(
-    "A cold wind howls through a narrow mountain pass.",
+    "The upper corridor stretches east and west beneath a low ceiling. Faded portraits line the walls, their painted eyes following your every step.",
     null,
     {
         north: "The northernmost wall of the mansion blocks your path.",

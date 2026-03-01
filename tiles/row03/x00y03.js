@@ -4,10 +4,10 @@ export default new Tile(
     "EMPTY ROOM",
     null,
     {
-        north: null,
-        east: null,
-        south: "The swamp is impassable.",
-        west: "The swamp stretches endlessly westward.",
+        north: "Navigation is not possible in this room.",
+        east: "Navigation is not possible in this room.",
+        south: "Navigation is not possible in this room.",
+        west: "Navigation is not possible in this room.",
     },
     false
 );

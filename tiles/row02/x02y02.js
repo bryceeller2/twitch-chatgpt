@@ -1,7 +1,7 @@
 import { Tile } from '../../tile.js';
 
 export default new Tile(
-    "A shallow stream trickles through mossy rocks.",
+    "A carpeted junction connects the grand hall to the eastern corridor. A suit of armor stands sentinel in the corner, visor down, one gauntlet resting on the pommel of a rusted sword.",
     null,
     {
         north: null,
