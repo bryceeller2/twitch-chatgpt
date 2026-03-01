@@ -8,6 +8,9 @@ import {job} from './keep_alive.js';
 
 import {OpenAIOperations} from './openai_operations.js';
 import {TwitchBot} from './twitch_bot.js';
+import {Item} from './item.js';
+import {Tile} from './tile.js';
+import {gameMap} from './map.js';
 
 // start keep alive cron job
 job.start();
@@ -82,7 +85,8 @@ if (!ENABLE_CHANNEL_POINTS) {
 const MAX_LENGTH = 399
 let file_context = "You are a helpful Twitch Chatbot."
 let last_user_message = ""
-const playerPositions = new Map()
+const playerData = new Map()
+
 
 // setup twitch bot
 const channels = CHANNELS;
@@ -284,20 +288,28 @@ app.get('/move', async (req, res) => {
     const direction = req.query.direction;
     const user = req.query.user;
 
-    if (!playerPositions.has(user)) {
-        playerPositions.set(user, { x: 3, y: 1 });
+    if (!playerData.has(user)) {
+        playerData.set(user, { x: 1, y: 3, items: [] });
+        const tile = gameMap[3][1];
+        const answer = `@${user} looks around. ${tile.description}`;
+        bot.say(channel, answer);
+        return res.send(answer);
     }
 
-    const pos = playerPositions.get(user);
+    const pos = playerData.get(user);
+
+    const maxY = gameMap.length - 1;
+    const maxX = gameMap[0].length - 1;
 
     switch (direction.toLowerCase()) {
-        case "north": pos.y += 1; break;
-        case "south": pos.y -= 1; break;
-        case "east":  pos.x += 1; break;
-        case "west":  pos.x -= 1; break;
+        case "north": if (pos.y > 0)    pos.y -= 1; break;
+        case "south": if (pos.y < maxY) pos.y += 1; break;
+        case "east":  if (pos.x < maxX) pos.x += 1; break;
+        case "west":  if (pos.x > 0)    pos.x -= 1; break;
     }
-
-    const answer = `@${user} moved ${direction}. New position: (${pos.x}, ${pos.y})`;
+    
+    const tile = gameMap[pos.y][pos.x];
+    const answer = `@${user} moved ${direction}. ${tile.description}`;
 
     bot.say(channel, answer);
     res.send(answer);
