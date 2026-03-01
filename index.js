@@ -269,6 +269,7 @@ app.get('/gpt/:text', async (req, res) => {
     if (firstWord == "move" || firstWord.equals("move")) {
         res.send("move detected!")
     }
+    console.log(`First Word: ${firstWord}`);
 
     // send response
     await answer_question(answer)
