@@ -270,12 +270,40 @@ app.get('/gpt/:text', async (req, res) => {
         res.send("move detected!")
     }
     console.log(`First Word: ${firstWord}`);
+    console.log(req.params)
+    console.log("test")
 
     // send response
     await answer_question(answer)
 
     res.send(answer)
 })
+
+app.get('/move/:direction', async (req, res) => {
+    const direction = req.params.direction;
+
+    // TODO: handle dungeon crawler move logic
+    const answer = `Move command received: ${direction}`;
+
+    bot.say(channel, answer);
+    res.send(answer);
+});
+
+app.get('/help', async (req, res) => {
+    // TODO: return dynamic help based on game state
+    const answer = "Commands: !move <direction>, !items, !help";
+
+    bot.say(channel, answer);
+    res.send(answer);
+});
+
+app.get('/items', async (req, res) => {
+    // TODO: return player's current inventory
+    const answer = "You have no items.";
+
+    bot.say(channel, answer);
+    res.send(answer);
+});
 
 // make app always listening to twitch chat and get new messages starting with !gpt on port 3000
 const server = app.listen(3000, () => {
