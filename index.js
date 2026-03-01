@@ -299,6 +299,13 @@ app.get('/move', async (req, res) => {
 
     const pos = playerData.get(user);
 
+    const blockMessage = gameMap[pos.y][pos.x].getBlockMessage(direction, pos.items);
+    if (blockMessage !== null) {
+        const answer = `@${user} cannot move ${direction}. ${blockMessage}`;
+        bot.say(channel, answer);
+        return res.send(answer);
+    }
+
     const maxY = gameMap.length - 1;
     const maxX = gameMap[0].length - 1;
 
@@ -308,7 +315,7 @@ app.get('/move', async (req, res) => {
         case "east":  if (pos.x < maxX) pos.x += 1; break;
         case "west":  if (pos.x > 0)    pos.x -= 1; break;
     }
-    
+
     const tile = gameMap[pos.y][pos.x];
     const answer = `@${user} moved ${direction}. ${tile.description}`;
 

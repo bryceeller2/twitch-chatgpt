@@ -1,13 +1,13 @@
 import { Tile } from '../../tile.js';
 
 export default new Tile(
-    "You stand in a quiet clearing. Sunlight filters through the trees.",
+    "You advance through the hallway",
     null,
     {
         north: null,
-        east: null,
+        east: "The hallway blocks your path.",
         south: null,
-        west: null,
+        west: "The hallway blocks your path.",
     },
     true
 );

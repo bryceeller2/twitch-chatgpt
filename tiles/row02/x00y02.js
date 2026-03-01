@@ -4,10 +4,10 @@ export default new Tile(
     "A muddy trail runs along the western marshes.",
     null,
     {
-        north: null,
+        north: "The hallway blocks your path.",
         east: null,
-        south: null,
-        west: "The marshes are too deep to cross.",
+        south: "The hallway blocks your path.",
+        west: "The hallway blocks your path.",
     },
     true
 );

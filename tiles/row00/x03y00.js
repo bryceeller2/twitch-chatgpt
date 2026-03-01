@@ -4,8 +4,8 @@ export default new Tile(
     "The path ends at a frozen waterfall.",
     null,
     {
-        north: "A sheer cliff face blocks your path.",
-        east: "The cliff drops off sharply.",
+        north: "The northernmost wall of the mansion blocks your path.",
+        east: "The easternmost wall of the mansion blocks your path.",
         south: null,
         west: null,
     },
