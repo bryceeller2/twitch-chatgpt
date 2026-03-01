@@ -279,11 +279,12 @@ app.get('/gpt/:text', async (req, res) => {
     res.send(answer)
 })
 
-app.get('/move/:direction', async (req, res) => {
-    const direction = req.params.direction;
+app.get('/move', async (req, res) => {
+    const direction = req.query.direction;
+    const user = req.query.user;
 
     // TODO: handle dungeon crawler move logic
-    const answer = `Move command received: ${direction}`;
+    const answer = `Move command received: ${direction} from user: ${user}`;
 
     bot.say(channel, answer);
     res.send(answer);
@@ -298,6 +299,8 @@ app.get('/help', async (req, res) => {
 });
 
 app.get('/items', async (req, res) => {
+    const user = req.query.user;
+    
     // TODO: return player's current inventory
     const answer = "You have no items.";
 
