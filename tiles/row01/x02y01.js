@@ -1,7 +1,7 @@
 import { Tile } from '../../tile.js';
 
 export default new Tile(
-    "The ruins of an old stone bridge stretch across a dry ravine.",
+    "EMPTY ROOM",
     null,
     {
         north: null,

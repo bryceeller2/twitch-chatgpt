@@ -1,12 +1,12 @@
 import { Tile } from '../../tile.js';
 
 export default new Tile(
-    "The remains of an old campfire sit cold in the center of a clearing.",
+    "The grand hall of the mansion is a airy, wide open space with pathways leading out in every direction. To your west is a hallway with a glistening, golden door at the end. Directly ahead is a wide staircase framed with wooden handrails carved into the shape of wolves. When you turn to your right, you can see a narrow hallway to the east. It seems to stretch on forever and ever.",
     null,
     {
-        north: "The hallway blocks your path",
+        north: null,
         east: null,
-        south: "The hallway blocks your path",
+        south: null,
         west: null,
     },
     true

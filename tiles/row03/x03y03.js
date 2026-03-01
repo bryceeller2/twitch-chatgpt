@@ -1,7 +1,7 @@
 import { Tile } from '../../tile.js';
 
 export default new Tile(
-    "A broken signpost marks the southern trailhead.",
+    "EMPTY ROOM",
     null,
     {
         north: null,

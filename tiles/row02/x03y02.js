@@ -5,7 +5,7 @@ export default new Tile(
     null,
     {
         north: "The moving oil painting depicts YourFriendAndy setting a new Personal Best in Donkey Kong Mountain",
-        east: "The hallway ends abruptly",
+        east: "The hallway ends abruptly. This must be the easternmost wall of the mansion.",
         south: 'A bookshelf filled with drab tomes lines the wall. One book stands slightly out of place. When you pull it back, the entire shelf swings forward. Behind it sits a treasure chest containing five diamonds. Each diamond has a name etched into it. "Bleyotro", "cameroxnwithanx", "ctrlaltdavelete", "lilmama_015", "proud_junkrat_main"',
         west: null,
     },

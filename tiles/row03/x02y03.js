@@ -1,7 +1,7 @@
 import { Tile } from '../../tile.js';
 
 export default new Tile(
-    "Wild grass sways in the breeze at the forest's southern edge.",
+    "EMPTY ROOM",
     null,
     {
         north: null,
