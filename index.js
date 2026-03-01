@@ -10,7 +10,8 @@ import {OpenAIOperations} from './openai_operations.js';
 import {TwitchBot} from './twitch_bot.js';
 import {Item} from './item.js';
 import {Tile} from './tile.js';
-import {gameMap} from './map.js';
+import { loadMap } from './map.js';
+const gameMap = await loadMap();
 
 // start keep alive cron job
 job.start();
