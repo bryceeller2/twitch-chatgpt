@@ -266,7 +266,7 @@ app.get('/gpt/:text', async (req, res) => {
 
     console.log('Chat received, new commit confirmed deployed');
     const firstWord = text.split(" ")[0].toLowerCase();
-    if (firstWord == "move" || firstWord.equals("move")) {
+    if (firstWord === "move") {
         res.send("move detected!")
     }
     console.log(`First Word: ${firstWord}`);
