@@ -131,6 +131,27 @@ bot.onMessage(async (channel, user, message, self) => {
             bot.say(channel, response);
         }
     }
+    const lowerMessage = message.toLowerCase();
+
+    if (lowerMessage.startsWith("!move")) {
+        const direction = message.slice("!move".length).trim();
+        // TODO: handle move command
+        bot.say(channel, `@${user.username} tried to move: ${direction}`);
+        return;
+    }
+
+    if (lowerMessage.startsWith("!help")) {
+        // TODO: handle help command
+        bot.say(channel, `@${user.username} Commands: !move <direction>, !items, !help`);
+        return;
+    }
+
+    if (lowerMessage.startsWith("!items")) {
+        // TODO: handle items command
+        bot.say(channel, `@${user.username} You have no items.`);
+        return;
+    }
+
     // check if message is a command started with !COMMAND_NAME (e.g. !gpt) in lower-cased
     if (message.toLowerCase().startsWith(COMMAND_NAME)) {
         let text = message.slice(COMMAND_NAME.length);
