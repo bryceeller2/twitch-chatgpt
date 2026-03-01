@@ -82,6 +82,7 @@ if (!ENABLE_CHANNEL_POINTS) {
 const MAX_LENGTH = 399
 let file_context = "You are a helpful Twitch Chatbot."
 let last_user_message = ""
+const playerPositions = new Map()
 
 // setup twitch bot
 const channels = CHANNELS;
@@ -283,8 +284,20 @@ app.get('/move', async (req, res) => {
     const direction = req.query.direction;
     const user = req.query.user;
 
-    // TODO: handle dungeon crawler move logic
-    const answer = `Move command received: ${direction} from user: ${user}`;
+    if (!playerPositions.has(user)) {
+        playerPositions.set(user, { x: 3, y: 1 });
+    }
+
+    const pos = playerPositions.get(user);
+
+    switch (direction.toLowerCase()) {
+        case "north": pos.y += 1; break;
+        case "south": pos.y -= 1; break;
+        case "east":  pos.x += 1; break;
+        case "west":  pos.x -= 1; break;
+    }
+
+    const answer = `@${user} moved ${direction}. New position: (${pos.x}, ${pos.y})`;
 
     bot.say(channel, answer);
     res.send(answer);
@@ -292,7 +305,7 @@ app.get('/move', async (req, res) => {
 
 app.get('/help', async (req, res) => {
     // TODO: return dynamic help based on game state
-    const answer = "Commands: !move <direction>, !items, !help";
+    const answer = "Commands: !move <direction>, !items";
 
     bot.say(channel, answer);
     res.send(answer);
@@ -300,7 +313,7 @@ app.get('/help', async (req, res) => {
 
 app.get('/items', async (req, res) => {
     const user = req.query.user;
-    
+
     // TODO: return player's current inventory
     const answer = "You have no items.";
 
